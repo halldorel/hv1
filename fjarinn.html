@@ -9,12 +9,14 @@
 	<div class="container">
 		<h1>Fjármálalæsi <small>fyrir hálfvita</small></h1>
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="row">
-					<div class="col-md-8">
-						<input type="number" class="form-control" placeholder="Lánsupphæð" />
-					</div>
 					<div class="col-md-4">
+						<input type="number" class="form-control" placeholder="Höfuðstóll" />
+					</div>
+					<div class="col-md-2">
+						<input type="number" class="form-control" placeholder="Vextir" />
+						<!--
 						<div class="btn-group">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 								Vextir
@@ -31,10 +33,26 @@
 								<li><a href="#">8,60% Bundið, 60 mán</a></li>
 							</ul>
 						</div>
+						-->
+					</div>
+					<div class="col-md-2">
+						<div class="checkbox">
+							<label>
+								<input id="verdtryggt" type="checkbox" value="" />
+								Verðtrygging
+							</label>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<input type="number" class="form-control" placeholder="Lengd í mánuðum" />
 					</div>
 				</div><br />
+
 				<div class="row">
-					<div class="col-md-8">
+					<hr>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
 						<input type="number" class="form-control" placeholder="Greiðslugeta á mánuði" />
 						
 					</div>
@@ -54,7 +72,8 @@
 				
 				
 			</div>
-
+		</div>
+		<div class="row">
 			<div class="col-md-5">
 				<div class="well">
 					<span class="lead">Hakaðu við þá reikninga sem þú átt</span>
