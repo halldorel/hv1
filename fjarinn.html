@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Fjárinn</title>
 	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -16,6 +17,7 @@
 				<span class="lead">Lánsupplýsingar</span>
 			</div>
 			<div class="col-md-12">
+
 				<div class="row">
 					<div class="col-md-4">
 						<input type="number" class="form-control" placeholder="Höfuðstóll" step="100000" />
@@ -51,8 +53,16 @@
 					</div>
 					<div class="col-md-2">
 						<input type="number" class="form-control" placeholder="Lengd í mánuðum" />
+
+
+				<div id="lanalisti">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-lg" id="meira-lan">
+							<span class="glyphicon glyphicon-star"></span> Meira lán!
+						</button>
+
 					</div>
-				</div><br />
+				</div>
 
 				<div class="row">
 					<hr>
@@ -110,9 +120,58 @@
 			</div>
 
 		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" style="width: 35%"></div>
+					<div class="progress-bar progress-bar-warning" style="width: 25%"></div>
+					<div class="progress-bar progress-bar-danger" style="width: 40%"></div>
+				</div>
+			</div>
+		</div>
 	</div>
-<script src="fjarinn.js"></script>
+<script type="text/template" id="lan-tmp">
+<div class="row">
+	<div class="col-md-4">
+		<input type="number" class="form-control" placeholder="Höfuðstóll" />
+	</div>
+	<div class="col-md-2">
+		<input type="number" class="form-control" placeholder="Vextir" />
+		<!--
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				Vextir
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a href="#">3,50% Verðtryggt</a></li>
+				<li><a href="#">4,50% Verðtryggt</a></li>
+				<li><a href="#">6,75% Breytilegir vextir</a></li>
+				<li><a href="#">7,75% Breytilegir vextir</a></li>
+				<li><a href="#">7,30% Bundið 36 mán</a></li>
+				<li><a href="#">8,30% Bundið 36 mán</a></li>
+				<li><a href="#">7,60% Bundið, 60 mán</a></li>
+				<li><a href="#">8,60% Bundið, 60 mán</a></li>
+			</ul>
+		</div>
+		-->
+	</div>
+	<div class="col-md-2">
+		<div class="checkbox">
+			<label>
+				<input id="verdtryggt" type="checkbox" value="" />
+				Verðtrygging
+			</label>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<input type="number" class="form-control" placeholder="Lengd í mánuðum" />
+	</div>
+</div>
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/fjarinn.js"></script>
 </body>
 </html>
