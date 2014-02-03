@@ -9,13 +9,86 @@
 	<div class="container">
 		<h1>Fjármálalæsi <small>fyrir hálfvita</small></h1>
 		<div class="row">
-			<div class="col-md-4">
-				<input type="number" class="form-control" placeholder="Lánsupphæð" /><br />
-				<input type="number" class="form-control" placeholder="Greiðslugeta" />
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-8">
+						<input type="number" class="form-control" placeholder="Lánsupphæð" />
+					</div>
+					<div class="col-md-4">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								Vextir
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#">3,50% Verðtryggt</a></li>
+								<li><a href="#">4,50% Verðtryggt</a></li>
+								<li><a href="#">6,75% Breytilegir vextir</a></li>
+								<li><a href="#">7,75% Breytilegir vextir</a></li>
+								<li><a href="#">7,30% Bundið 36 mán</a></li>
+								<li><a href="#">8,30% Bundið 36 mán</a></li>
+								<li><a href="#">7,60% Bundið, 60 mán</a></li>
+								<li><a href="#">8,60% Bundið, 60 mán</a></li>
+							</ul>
+						</div>
+					</div>
+				</div><br />
+				<div class="row">
+					<div class="col-md-8">
+						<input type="number" class="form-control" placeholder="Greiðslugeta á mánuði" />
+						
+					</div>
+					<div class="col-md-4">
+
+					</div>
+				</div> <br />
+				<div class="row">
+					<div class="col-md-8">
+						<input type="number" class="form-control" placeholder="Núverandi upphæð láns" />
+						
+					</div>
+					<div class="col-md-4">
+
+					</div>
+				</div>
+				
+				
 			</div>
+
+			<div class="col-md-5">
+				<div class="well">
+					<span class="lead">Hakaðu við þá reikninga sem þú átt</span>
+					<div class="checkbox">
+						<label>
+							<input id="selectAll" type="checkbox" value="" />
+							<strong>Velja allt</strong>
+						</label><br />
+						<label>
+							<input class="selectedId" type="checkbox" value="" />
+							1,80% — Kjörbók
+						</label><br />
+						<label>
+							<input class="selectedId" type="checkbox" value="" />
+							4,45% — Sparireikningur
+						</label><br />
+						<label>
+							<input class="selectedId" type="checkbox" value="" />
+							4,25% — Vaxtareikningur
+						</label><br />
+						<label>
+							<input class="selectedId" type="checkbox" value="" />
+							1,90% — Landsbók
+						</label><br />
+
+					</div>
+				</div>
+				
+			</div>
+
 
 		</div>
 	</div>
+<script src="fjarinn.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 </body>
