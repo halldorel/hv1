@@ -7,7 +7,7 @@ $(document).ready(function () {
 	var meira_compiled = _.template(meira_tmp);
 	
 	meira_btn.click(function() {
-		console.log("clicked");
+		//console.log("clicked");
 		lana_list.prepend(meira_compiled
 	)});
 });
