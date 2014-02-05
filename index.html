@@ -8,89 +8,49 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Fjármálalæsi <small>fyrir hálfvita</small></h1>
+		<h1>Fjármálalæsi <small>fyrir meðalmanninn</small></h1>
 		<div class="row">
 			<hr>
 			
 		</div>
 				
 		<div class="row">
-			<!--
-					<div class="col-md-4">
-						<input type="number" class="form-control" placeholder="Höfuðstóll" step="100000" />
-					</div>
-					<div class="col-md-2">
-						<input type="number" class="form-control" placeholder="Vextir" step="any" />
-						
-						<div class="btn-group">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								Vextir
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="#">3,50% Verðtryggt</a></li>
-								<li><a href="#">4,50% Verðtryggt</a></li>
-								<li><a href="#">6,75% Breytilegir vextir</a></li>
-								<li><a href="#">7,75% Breytilegir vextir</a></li>
-								<li><a href="#">7,30% Bundið 36 mán</a></li>
-								<li><a href="#">8,30% Bundið 36 mán</a></li>
-								<li><a href="#">7,60% Bundið, 60 mán</a></li>
-								<li><a href="#">8,60% Bundið, 60 mán</a></li>
-							</ul>
-						</div>
-						
-					</div>
-					<div class="col-md-2">
-						<div class="checkbox">
-							<label>
-								<input id="verdtryggt" type="checkbox" value="" />
-								Verðtrygging
-							</label>
-						</div>
-					</div>
-					<div class="col-md-2">
-						<input type="number" class="form-control" placeholder="Lengd í mánuðum" />
--->
+			<div class="row">
+				<div class="col-md-4">
+					<span class="lead">Lán</span>
+				</div>
+			</div>
+			<div id="lanalisti">
 				<div class="row">
 					<div class="col-md-4">
-						<span class="lead">Lán</span>
-					</div>
-				</div>
-				<div id="lanalisti">
-
-					<div class="row">
-						<div class="col-md-4">
-							<button type="button" class="btn btn-default" id="meira-lan">
-								<span class="glyphicon glyphicon-plus"></span> Bæta við láni
-							</button>
-						</div>
+						<button type="button" class="btn btn-default" id="meira-lan">
+							<span class="glyphicon glyphicon-plus"></span> Bæta við láni
+						</button>
 					</div>
 				</div>
 			</div>
-				<div class="row">
-					<hr>
-					
-				</div>
-				
-				<div class="row">
-					<div class="row">
-						<div class="col-md-4">
-							<span class="lead">Sparnaður</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3">
-							<input type="number" class="form-control" placeholder="Greiðslugeta á mánuði" />
-						</div>
-						<div class="col-md-3">
-							<input type="number" class="form-control" placeholder="Hvenær þarf að taka út?" />
-						</div>
-						<div class="col-md-4">
-							<input type="number" class="form-control" placeholder="Upphæð takmarks" />
-						</div>
-					</div>
-				
-				</div>
+		</div>
+		<div class="row">
+			<hr>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-4">
+				<span class="lead">Sparnaður</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<input type="number" class="form-control" placeholder="Greiðslugeta á mánuði" />
+			</div>
+			<div class="col-md-3">
+				<input type="number" class="form-control" placeholder="Hvenær þarf að taka út?" />
+			</div>
+			<div class="col-md-4">
+				<input type="number" class="form-control" placeholder="Upphæð takmarks" />
+			</div>
+		</div>
 
 		<br />
 		<div class="row">
@@ -151,7 +111,7 @@
 		<input type="number" class="form-control" placeholder="Lengd í mánuðum" />
 	</div>
 	<div class="col-sm-1">
-		<button type="button" class="btn btn-default" id="meira-lan">
+		<button type="button" class="btn btn-default remove" id="meira-lan">
 			<span class="glyphicon glyphicon-remove"></span> Eyða
 		</button>
 	</div>
