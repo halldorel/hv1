@@ -69,7 +69,7 @@ function reikna()
 		url: '/internet.py',
 		data: JSON.stringify(data),
 		success: function(result) {
-			alert("typpi");
+			alert("snilld");
 		},
 		error: function() {
 			alert("mistök");
