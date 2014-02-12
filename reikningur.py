@@ -18,6 +18,7 @@ def maxReikningar(reikningar):
 	for reikningur in reikningar:
 		if reikningur.raunvextir > max:
 			max_reikningur = reikningur
+			max = reikningur.raunvextir
 
 	return max_reikningur;
 

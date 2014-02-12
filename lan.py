@@ -55,10 +55,11 @@ def maxLan(lanalisti):
 	for lan in lanalisti:
 		if lan.raunvextir > max:
 			max_lan = lan
+			max = lan.raunvextir
 			lanastadur = i
 		i = i + 1
 
-	return [max_lan,lanastadur];
+	return [max_lan,lanastadur]
 
 #N: max = maxAllt(maxreikningr,maxlan)
 #E: max er annadhvort maxreikningur eda maxlan - eftir tvi hvort hefur haerri raunvexti
