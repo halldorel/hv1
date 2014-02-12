@@ -29,25 +29,51 @@ var lineData = {
 	]
 };
 
-var lanaListi = [];
-function Lan(nafn, upph, vextir, lengd, verdtr)
-{
-	this.nafn 	= nafn;
-	this.upph 	= upph;
-	this.vextir = vextir;
-	this.lengd 	= lengd;
-	this.verdtr = verdtr || false;
-}
 
 function reikna()
 {
+	var lanaListi = [];
 	var formList = $('#lanalisti form div.row');
 	formList.each(function(i)
 	{
-		$(this).children('div').each(function(i)
-		{
-			console.log($(this).children('input'));
-		});
+		var drasl = $(this).children('div');
+		lanaListi[i] = {
+			nafn 	: drasl.children('input.nafn').val(),
+			haus	: drasl.children('input.haus').val(),
+			vextir	: drasl.children('input.vextir').val(),
+			lengd	: drasl.children('input.lengd').val(),
+			verdtr 	: ((drasl.children('div.checkbox').children().children('.verdtryggt')[0].checked) ? 1 : 0)
+		}
+	});
+
+	var sparnadur = {
+		greidslugeta 	: $('#greidslugeta').val(),
+		hvenaer 		: $('#hvenaer').val(),
+		upphaed			: $('#upphaed').val()
+	};
+
+	var reikningar = [];
+	if ($('#180')[0].checked) reikningar.append({reikningur: "Kjörbók", vextir: 1.80});
+	if ($('#445')[0].checked) reikningar.append({reikningur: "Sparireikningur", vextir: 4.45});
+	if ($('#425')[0].checked) reikningar.append({reikningur: "Vaxtareikningur", vextir: 4.25});
+	if ($('#190')[0].checked) reikningar.append({reikningur: "Landsbók", vextir: 1.90});
+
+	var data = {
+		lan 	: lanaListi,
+		spar 	: sparnadur,
+		reikn 	: reikningar
+	}
+
+	$.ajax({
+		type: 'GET',
+		url: '/internet.py',
+		data: JSON.stringify(data),
+		success: function(result) {
+			alert("typpi");
+		},
+		error: function() {
+			alert("mistök");
+		}
 	});
 }
 
