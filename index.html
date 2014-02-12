@@ -83,6 +83,11 @@
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<button type="button" class="btn btn-default" id="reikna">
+						<span class="glyphicon glyphicon-stats"></span> Reikna
+					</button>
+				</div>
 			</div>
 			<div class="col-md-7">
 				<canvas id="bars" width="300" height="300"></canvas>
@@ -96,24 +101,24 @@
 <form>
 	<div class="row">
 		<div class="col-md-3">
-			<input type="text" class="form-control" placeholder="Nafn láns" />
+			<input type="text" class="form-control nafn" placeholder="Nafn láns" />
 		</div>
 		<div class="col-md-3">
-			<input type="number" class="form-control" placeholder="Höfuðstóll" step="100000" />
+			<input type="number" class="form-control haus" placeholder="Höfuðstóll" step="100000" />
 		</div>
 		<div class="col-md-2">
-			<input type="number" class="form-control" placeholder="Vextir" step="any" />
+			<input type="number" class="form-control vextir" placeholder="Vextir" step="any" />
 		</div>
 		<div class="col-md-1">
 			<div class="checkbox">
 				<label>
-					<input id="verdtryggt" type="checkbox" value="" />
+					<input class="verdtryggt" type="checkbox" value="" />
 					Verðtr.
 				</label>
 			</div>
 		</div>
 		<div class="col-md-2">
-			<input type="number" class="form-control" placeholder="Lengd í mánuðum" />
+			<input type="number" class="form-control lengd" placeholder="Lengd í mánuðum" />
 		</div>
 		<div class="col-sm-1">
 			<button type="button" class="btn btn-default remove" id="meira-lan">

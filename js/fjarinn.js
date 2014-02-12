@@ -29,7 +29,7 @@ var lineData = {
 	]
 };
 
-var lanaListi;
+var lanaListi = [];
 function Lan(nafn, upph, vextir, lengd, verdtr)
 {
 	this.nafn 	= nafn;
@@ -42,14 +42,13 @@ function Lan(nafn, upph, vextir, lengd, verdtr)
 function reikna()
 {
 	var formList = $('#lanalisti form');
-	for (f in formList)
+	formList.each(function(i)
 	{
-		console.log(formList[f])
-	}
+		console.log($(this).children('#nafn').val());
+	});
 }
 
-
-
+var lan = 0;
 $(document).ready(function () {
 
 	var meira_btn = $("#meira-lan");
@@ -58,17 +57,23 @@ $(document).ready(function () {
 	var lana_list = $("#lanalisti");
 
 	lana_list.delegate('button.remove', 'click', function (e) {
-		$(this).parent().parent().slideToggle(100, function () {this.remove();});
+		$(this).parent().parent().parent().slideToggle(100, function () {this.remove();});
+		lan--;
 	});
 	
 	var meira_compiled = _.template(meira_tmp);
 	
 	meira_btn.click(function() {
 		lana_list.append(meira_compiled);
+		lan++;
 	});
 
 	remove_btn.click(function() {
 		this.parent().remove();
+	});
+
+	$('#reikna').click(function() {
+		reikna();
 	});
 
 	var lines = LineGraph.create(lineData, GraphInit.lineOptions);
