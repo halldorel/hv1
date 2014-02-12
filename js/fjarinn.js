@@ -41,10 +41,13 @@ function Lan(nafn, upph, vextir, lengd, verdtr)
 
 function reikna()
 {
-	var formList = $('#lanalisti form');
+	var formList = $('#lanalisti form div.row');
 	formList.each(function(i)
 	{
-		console.log($(this).children('#nafn').val());
+		$(this).children('div').each(function(i)
+		{
+			console.log($(this).children('input'));
+		});
 	});
 }
 
