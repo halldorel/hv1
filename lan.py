@@ -19,7 +19,7 @@ def lanVenjulega(lan):
 	heildargreidslur = []
 	vaxtagreidslur = []
 	hofudstoll = lan.hofudstoll
-	for i in range(0,timi):
+	for i in range(0,lan.timi):
 		vaxtagreidslur.append((hofudstoll - (i * hofudstoll / lan.timi)) * lan.raunvextir)
 		heildargreidslur.append(vaxtagreidslur[i] + afborgun)
 	return [vaxtagreidslur, heildargreidslur]
