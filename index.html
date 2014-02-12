@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Fjármálalæsi <small>fyrir meðalmanninn</small></h1>
+		<h1>Ólán <small>fyrir meðalmanninn</small></h1>
 		<div class="row">
 			<hr>
 			
@@ -84,42 +84,50 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-7">
+				<canvas id="bars" width="300" height="300"></canvas>
+				<canvas id="lines" width="300" height="300"></canvas>
+			</div>
 
 		</div>
 
 	</div>
 <script type="text/template" id="lan-tmp">
-<div class="row">
-	<div class="col-md-3">
-		<input type="text" class="form-control" placeholder="Nafn láns" />
-	</div>
-	<div class="col-md-3">
-		<input type="number" class="form-control" placeholder="Höfuðstóll" step="100000" />
-	</div>
-	<div class="col-md-2">
-		<input type="number" class="form-control" placeholder="Vextir" step="any" />
-	</div>
-	<div class="col-md-1">
-		<div class="checkbox">
-			<label>
-				<input id="verdtryggt" type="checkbox" value="" />
-				Verðtr.
-			</label>
+<form>
+	<div class="row">
+		<div class="col-md-3">
+			<input type="text" class="form-control" placeholder="Nafn láns" />
+		</div>
+		<div class="col-md-3">
+			<input type="number" class="form-control" placeholder="Höfuðstóll" step="100000" />
+		</div>
+		<div class="col-md-2">
+			<input type="number" class="form-control" placeholder="Vextir" step="any" />
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<label>
+					<input id="verdtryggt" type="checkbox" value="" />
+					Verðtr.
+				</label>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<input type="number" class="form-control" placeholder="Lengd í mánuðum" />
+		</div>
+		<div class="col-sm-1">
+			<button type="button" class="btn btn-default remove" id="meira-lan">
+				<span class="glyphicon glyphicon-remove"></span> Eyða
+			</button>
 		</div>
 	</div>
-	<div class="col-md-2">
-		<input type="number" class="form-control" placeholder="Lengd í mánuðum" />
-	</div>
-	<div class="col-sm-1">
-		<button type="button" class="btn btn-default remove" id="meira-lan">
-			<span class="glyphicon glyphicon-remove"></span> Eyða
-		</button>
-	</div>
-</div>
+</form>
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="js/underscore.js"></script>
+<script src="js/charts.js"></script>
 <script src="js/fjarinn.js"></script>
 </body>
 </html>

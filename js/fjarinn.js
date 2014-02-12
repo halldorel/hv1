@@ -1,3 +1,55 @@
+var barData = {
+	labels : ["Krummi","Smálán","Yfirdráttur","Húsnæði"],
+	datasets : [
+		{
+			fillColor : "rgba(220,220,220,0.5)",
+			strokeColor : "rgba(220,220,220,1)",
+			data : [65,59,45,5]
+		}
+	]
+};
+
+var lineData = {
+	labels : ["1","2","3","4","5","6","7"],
+	datasets : [
+		{
+			fillColor : "rgba(220,220,220,0.5)",
+			strokeColor : "rgba(220,220,220,1)",
+			pointColor : "rgba(220,220,220,1)",
+			pointStrokeColor : "#fff",
+			data : [65,64,63,61,60,57,55]
+		},
+		{
+			fillColor : "rgba(151,187,205,0.5)",
+			strokeColor : "rgba(151,187,205,1)",
+			pointColor : "rgba(151,187,205,1)",
+			pointStrokeColor : "#fff",
+			data : [65,62,59,57,55,52,51]
+		}
+	]
+};
+
+var lanaListi;
+function Lan(nafn, upph, vextir, lengd, verdtr)
+{
+	this.nafn 	= nafn;
+	this.upph 	= upph;
+	this.vextir = vextir;
+	this.lengd 	= lengd;
+	this.verdtr = verdtr || false;
+}
+
+function reikna()
+{
+	var formList = $('#lanalisti form');
+	for (f in formList)
+	{
+		console.log(formList[f])
+	}
+}
+
+
+
 $(document).ready(function () {
 
 	var meira_btn = $("#meira-lan");
@@ -12,11 +64,13 @@ $(document).ready(function () {
 	var meira_compiled = _.template(meira_tmp);
 	
 	meira_btn.click(function() {
-		//console.log("clicked");
 		lana_list.append(meira_compiled);
 	});
 
 	remove_btn.click(function() {
 		this.parent().remove();
-	})
+	});
+
+	var lines = LineGraph.create(lineData, GraphInit.lineOptions);
+	var bars = BarGraph.create(barData, GraphInit.barOptions);
 });
