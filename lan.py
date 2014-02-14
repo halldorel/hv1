@@ -19,7 +19,7 @@ def lanVenjulega(lan):
 	heildargreidslur = []
 	vaxtagreidslur = []
 	hofudstoll = lan.hofudstoll
-	for i in range(0,timi):
+	for i in range(0,lan.timi):
 		vaxtagreidslur.append((hofudstoll - (i * hofudstoll / lan.timi)) * lan.raunvextir)
 		heildargreidslur.append(vaxtagreidslur[i] + afborgun)
 	return [vaxtagreidslur, heildargreidslur]
@@ -55,10 +55,11 @@ def maxLan(lanalisti):
 	for lan in lanalisti:
 		if lan.raunvextir > max:
 			max_lan = lan
+			max = lan.raunvextir
 			lanastadur = i
 		i = i + 1
 
-	return [max_lan,lanastadur];
+	return [max_lan,lanastadur]
 
 #N: max = maxAllt(maxreikningr,maxlan)
 #E: max er annadhvort maxreikningur eda maxlan - eftir tvi hvort hefur haerri raunvexti
