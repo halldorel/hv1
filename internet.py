@@ -26,15 +26,21 @@ try:
 except:
 	print "JSON syntax error"
 else:
-	for i in decoded["lan"]:
-		this = decoded["lan"][i]
+	for lanid in decoded["lan"]:
+		this = lanid
 		nafn = this["nafn"]
 		vextir = this["vextir"]
 		verdtr = this["verdtr"]
 		lengd = this["lengd"]
 		haus = this["haus"]
-		lanid = lan(nafn, vextir, verdtr, lengd, haus, 0.04)
+		lanid = lan(nafn, float(vextir), float(verdtr), int(lengd), float(haus), 0.04)
 		lanalisti.append(lanid)
 
-	for j in lanalisti:
-		print lanVenjulega(j)
+	results["lanVenjulega"] = []
+
+	for lanid in lanalisti:
+		lanVenjulegaResult = lanVenjulega(lanid)
+		results["lanVenjulega"].append({"nafn": lanid.nafn, "val": lanVenjulegaResult})
+		
+
+print json.dumps(results)
