@@ -6,10 +6,12 @@ class reikningur:
 		self.vextir = vextir
 		self.verdtryggt = verdtryggt
 		self.raunvextir = vextir
+		self.verdbolga = verdbolga
 		if verdtryggt == True:
 			self.raunvextir = vextir + verdbolga
-		else
+		else:
 			self.verdbolga = 0
+		
 		
 #N: max_reikningur = maxReikningar(reikningar)
 #F: reikningar er listi af reikningum

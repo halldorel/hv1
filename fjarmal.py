@@ -1,6 +1,6 @@
 import sys
-from lan import lan, maxLan, maxAllt, lanVenjulega, lanAukalega, bestaGreidsluskiptingLana
-from reikningur import reikningur, sparnadurVaxtagrodi, sparnadurTimi, maxReikningar
+from lan import *
+from reikningur import *
 
 print "Sladu inn verdbolgu til ad mida vid (t.d 0.04)"
 vb = raw_input()

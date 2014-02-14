@@ -8,6 +8,7 @@ class lan:
 		self.timi = timi
 		self.hofudstoll = hofudstoll
 		self.raunvextir = vextir
+		self.verdbolga = verdbolga
 		if verdtryggt == True:
 			self.raunvextir = vextir + verdbolga
 		else:
