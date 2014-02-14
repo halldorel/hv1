@@ -48,8 +48,8 @@ else:
 	for reikningur in decoded["reikn"]:
 		nafn = reikningur["reikningur"]
 		vextir = reikningur["vextir"]
-		#sparnadurVaxtagrodiResult = sparnadurVaxtagrodi(greidslugeta, vextir, verdbolga)
-		#results["sparnadurVaxtagrodi"].append({"nafn" : nafn, "vextir" : vextir, "sparnadur" : sparnadurVaxtagrodiResult})
+		sparnadurVaxtagrodiResult = sparnadurVaxtagrodi(float(greidslugeta), float(vextir), verdbolga)
+		results["sparnadurVaxtagrodi"].append({"nafn" : nafn, "vextir" : float(vextir), "sparnadur" : sparnadurVaxtagrodiResult})
 
 	results["lanVenjulega"] = []
 	results["lanAukalega"] = []
