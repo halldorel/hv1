@@ -8,6 +8,8 @@ class reikningur:
 		self.raunvextir = vextir
 		if verdtryggt == True:
 			self.raunvextir = vextir + verdbolga
+		else
+			self.verdbolga = 0
 		
 #N: max_reikningur = maxReikningar(reikningar)
 #F: reikningar er listi af reikningum
@@ -23,14 +25,21 @@ def maxReikningar(reikningar):
 	return max_reikningur;
 
 #N: sparn = sparnadurVaxtagrodi(greidslugeta,vextir,verdbolga)
-#F: greidslugeta => 0, vextir => 0
 #E: sparn = greidslugeta * (vextir + verdbolga)/12 - eda raunvextir af greidslugetu fyrir einn manud
 def sparnadurVaxtagrodi(greidslugeta, vextir, verdbolga):
 	raunvextir = vextir + verdbolga
 	return greidslugeta * (raunvextir/12.0)
 
 #N: sparn = sparnadurTimi(timi,greidslugeta,vextir,verdbolga)
-#F: greidslugeta => 0, vextir => 0, timi => 0
+#F: timi er fjoldi manada sem sparad er og greidslugeta er manadarlegur sparnadur
 #E: sparn = timi * (greidslugeta * (vextir + verdbolga)/12) - eda heildar raunvextir af greidslugetu fyrir tima marga manudi
 def sparnadurTimi(timi,greidslugeta,vextir,verdbolga):
 	return  sparnadurVaxtagrodi(greidslugeta, vextir, verdbolga) * timi
+
+#N: sparn = sparnadurTimiHeild(timi,greidslugeta,vextir,verdbolga)
+#F: timi er fjoldi manada sem sparad er og greidslugeta er manadarlegur sparnadur og hofustoll er upphaed fyrir
+#E: sparn = timi * (greidslugeta * (vextir + verdbolga)/12) + (timi * greidslugeta) - eda heildarupphaed i lok sparnadar 
+def sparnadurTimiHeild(timi,greidslugeta,vextir,verdbolga,hofudstoll):
+	return sparnadurTimi(timi,greidslugeta,vextir,verdbolga) + (timi * greidslugeta) + (sparnadurTimi(hofudstoll,vextir,verdbolga)) + hofudstoll
+
+	
