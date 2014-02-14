@@ -10,6 +10,8 @@ class lan:
 		self.raunvextir = vextir
 		if verdtryggt == True:
 			self.raunvextir = vextir + verdbolga
+		else:
+			self.verdbolga = 0
 			
 #N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan)
 #E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru i vexti af lani 

@@ -57,9 +57,9 @@ print "Hagkvaemast er ad greida inn a lanid: "
 max_lan = maxLan(lanalisti)[0]
 print(max_lan.nafn)
 print "Midad vid greidslugetu thina er avinningur a manudi: "
-print(sparnadurVaxtagrodi(greidslugeta,max_lan.vextir,verdbolga))
+print(sparnadurVaxtagrodi(greidslugeta,max_lan.vextir,max_lan.verdbolga))
 print "I heildina sparast "
-print(sparnadurTimi(timi,greidslugeta,max_lan.vextir,verdbolga))
+print(sparnadurTimi(timi,greidslugeta,max_lan.vextir,max_lan.verdbolga))
 
 print "Listi yfir mogulega reikninga og vexti theirra er "
 for reikningur in reikningar:
