@@ -69,7 +69,9 @@ function reikna()
 		url: '/internet.py',
 		data: JSON.stringify(data),
 		success: function(result) {
+			console.log(JSON.stringify(data));
 			alert("snilld");
+			console.log(result);
 		},
 		error: function() {
 			alert("mistök");
