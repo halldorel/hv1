@@ -53,10 +53,10 @@ function reikna()
 	};
 
 	var reikningar = [];
-	if ($('#180')[0].checked) reikningar.append({reikningur: "Kjörbók", vextir: 1.80});
-	if ($('#445')[0].checked) reikningar.append({reikningur: "Sparireikningur", vextir: 4.45});
-	if ($('#425')[0].checked) reikningar.append({reikningur: "Vaxtareikningur", vextir: 4.25});
-	if ($('#190')[0].checked) reikningar.append({reikningur: "Landsbók", vextir: 1.90});
+	if ($('#180')[0].checked) reikningar.push({reikningur: "Kjörbók", vextir: 1.80});
+	if ($('#445')[0].checked) reikningar.push({reikningur: "Sparireikningur", vextir: 4.45});
+	if ($('#425')[0].checked) reikningar.push({reikningur: "Vaxtareikningur", vextir: 4.25});
+	if ($('#190')[0].checked) reikningar.push({reikningur: "Landsbók", vextir: 1.90});
 
 	var data = {
 		lan 	: lanaListi,

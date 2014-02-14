@@ -22,7 +22,7 @@ def lanVenjulega(lan):
 	for i in range(0,lan.timi):
 		vaxtagreidslur.append((hofudstoll - (i * hofudstoll / lan.timi)) * lan.raunvextir)
 		heildargreidslur.append(vaxtagreidslur[i] + afborgun)
-	return [vaxtagreidslur, heildargreidslur]
+	return {"vaxtagreidslur" : vaxtagreidslur, "heildargreidslur" : heildargreidslur}
 
 #N: #N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan,greidslugeta)
 #E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru vexti af lani 
@@ -42,7 +42,7 @@ def lanAukalega(lan, greidslugeta):
 		if hofudstoll <= 0:
 			break
 			
-	return [vaxtagreidslur, heildargreidslur]
+	return {"vaxtagreidslur" : vaxtagreidslur, "heildargreidslur" : heildargreidslur}
 
 #N: [max_lan, lanastadur] = maxLan(lanalisti)
 #F: lanalisti er listi af lanum
@@ -55,11 +55,10 @@ def maxLan(lanalisti):
 	for lan in lanalisti:
 		if lan.raunvextir > max:
 			max_lan = lan
-			max = lan.raunvextir
 			lanastadur = i
 		i = i + 1
 
-	return [max_lan,lanastadur]
+	return [max_lan,lanastadur];
 
 #N: max = maxAllt(maxreikningr,maxlan)
 #E: max er annadhvort maxreikningur eda maxlan - eftir tvi hvort hefur haerri raunvexti
