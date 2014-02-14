@@ -76,7 +76,7 @@ class testReikningur(unittest.TestCase):
 		self.assertEqual(sparnadurTimi(10,10000,0.05,-0.02),250)
 	
 	def test_sparnadurTimiHeild(self):
-		self.assertEqual(sparnadurTimi(10,10000,0.05,0,10000000),10000750)
+		self.assertEqual(int(sparnadurTimiHeild(10,10000,0.05,0,10000000)),10517083)
 		
 if __name__ == '__main__':
 	unittest.main()

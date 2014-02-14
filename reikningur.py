@@ -42,6 +42,6 @@ def sparnadurTimi(timi,greidslugeta,vextir,verdbolga):
 #F: timi er fjoldi manada sem sparad er og greidslugeta er manadarlegur sparnadur og hofustoll er upphaed fyrir
 #E: sparn = timi * (greidslugeta * (vextir + verdbolga)/12) + (timi * greidslugeta) - eda heildarupphaed i lok sparnadar 
 def sparnadurTimiHeild(timi,greidslugeta,vextir,verdbolga,hofudstoll):
-	return sparnadurTimi(timi,greidslugeta,vextir,verdbolga) + (timi * greidslugeta) + (sparnadurTimi(hofudstoll,vextir,verdbolga)) + hofudstoll
+	return sparnadurTimi(timi,greidslugeta,vextir,verdbolga) + (timi * greidslugeta) + sparnadurTimi(timi,hofudstoll,vextir,verdbolga) + hofudstoll
 
 	
