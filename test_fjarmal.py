@@ -5,6 +5,7 @@ from lan import *
 verdbolga = 0.04
 hofudstoll = 10000000
 greidslugeta = 10000
+heildargreidslugeta = 10000000
 		
 lanalistiAnVerd = []
 lanalistiAnVerd.append(lan("versta",0.0180,False,12,hofudstoll,verdbolga))
@@ -57,6 +58,9 @@ class testLan(unittest.TestCase):
 		self.assertEqual(int(sum(lanVenjulega(lanalistiAnVerd[0])[1])-sum(lanVenjulega(lanalistiAnVerd[0])[0])),10000000)
 		self.assertEqual(int(sum(lanVenjulega(lanalistiAnVerd[2])[1])-sum(lanVenjulega(lanalistiAnVerd[2])[0])),400000)
 		
+	def test_haestaMogulegtLan(self):
+		self.assertEqual(int(haestaMogulegtLan(heildargreidslugeta)),56666666)
+		
 class testReikningur(unittest.TestCase):
 		
 	def test_maxReikningar(self):
@@ -70,6 +74,9 @@ class testReikningur(unittest.TestCase):
 	def test_sparnadurTimi(self):
 		self.assertEqual(sparnadurTimi(10,10000,0.05,verdbolga),750)
 		self.assertEqual(sparnadurTimi(10,10000,0.05,-0.02),250)
+	
+	def test_sparnadurTimiHeild(self):
+		self.assertEqual(sparnadurTimi(10,10000,0.05,0,10000000),10000750)
 		
 if __name__ == '__main__':
 	unittest.main()
