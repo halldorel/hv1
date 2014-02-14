@@ -8,8 +8,11 @@ class lan:
 		self.timi = timi
 		self.hofudstoll = hofudstoll
 		self.raunvextir = vextir
+		self.verdbolga = verdbolga
 		if verdtryggt == True:
 			self.raunvextir = vextir + verdbolga
+		else:
+			self.verdbolga = 0
 			
 #N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan)
 #E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru i vexti af lani 
@@ -79,7 +82,7 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 	timi_greidslu = timi #Manudir sem vid eigum eftir af heildartima
 	for i in range(0,len(lanalisti)):
 		besta = maxLan(new_lanalisti)[0] #Hagkvaemast ad greida besta 
-		stadsetning = maxLan(new_lanalisti)[1] #
+		stadsetning = maxLan(new_lanalisti)[1] 
 		greidslur = lanAukalega(besta,greidslugeta)
 		if len(greidslur[0]) < timi_greidslu: #Enn timi eftir fyrir fleiri lan
 			new_lanalisti.pop(stadsetning) #Eydum besta ur listanum og finnum naest besta af teim stokum sem eru eftir
@@ -90,6 +93,12 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 			break
 	return lan_sorted
 	
+
+#N: lan = haestaMogulegtlan(heildargreidlsugeta)
+#F: heildargreidslugeta er heildarupphaed sem er laus til að greida i husnaedi
+#E: lan er haesta mogulegt lan sem haegt er taka midad vid greidslugetu
+def haestaMogulegtLan(heildargreidslugeta):
+	return heildargreidslugeta/0.15 - heildargreidslugeta
 
 	
 	

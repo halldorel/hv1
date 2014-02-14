@@ -1,34 +1,4 @@
-var barData = {
-	labels : ["Krummi","Smálán","Yfirdráttur","Húsnæði"],
-	datasets : [
-		{
-			fillColor : "rgba(220,220,220,0.5)",
-			strokeColor : "rgba(220,220,220,1)",
-			data : [65,59,45,5]
-		}
-	]
-};
-
-var lineData = {
-	labels : ["1","2","3","4","5","6","7"],
-	datasets : [
-		{
-			fillColor : "rgba(220,220,220,0.5)",
-			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
-			pointStrokeColor : "#fff",
-			data : [65,64,63,61,60,57,55]
-		},
-		{
-			fillColor : "rgba(151,187,205,0.5)",
-			strokeColor : "rgba(151,187,205,1)",
-			pointColor : "rgba(151,187,205,1)",
-			pointStrokeColor : "#fff",
-			data : [65,62,59,57,55,52,51]
-		}
-	]
-};
-
+var lines, bars;
 
 function reikna()
 {
@@ -73,12 +43,60 @@ function reikna()
 		success: function(result) {
 			console.log(JSON.stringify(data));
 			console.log("Frá bakenda:", result);
+			renderResults(result);
 		},
 		error: function() {
 			alert("mistök");
 		}
 	});
 }
+
+function renderResults(result)
+{
+	var barData = {
+		labels : ["Krummi","Smálán","Yfirdráttur","Húsnæði"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				data : [65,59,45,5]
+			}
+		]
+	};
+	
+	var lineData = {
+		labels : ["1","2","3","4","5","6","7"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [65,64,63,61,60,57,55]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [65,62,59,57,55,52,51]
+			}
+		]
+	};
+	renderLines(lineData);
+	renderBars(barData);
+}
+
+function renderLines(lineData)
+{
+	lines = LineGraph.create(lineData, GraphInit.lineOptions);
+}
+
+function renderBars(barData)
+{
+	bars = BarGraph.create(barData, GraphInit.barOptions);
+}
+
 
 var lan = 0;
 $(document).ready(function () {
@@ -107,7 +125,4 @@ $(document).ready(function () {
 	$('#reikna').click(function() {
 		reikna();
 	});
-
-	var lines = LineGraph.create(lineData, GraphInit.lineOptions);
-	var bars = BarGraph.create(barData, GraphInit.barOptions);
 });
