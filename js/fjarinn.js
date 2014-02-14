@@ -34,11 +34,15 @@ function reikna()
 		reikn 	: reikningar
 	}
 
+	var json_data = JSON.stringify(data);
+
 	$.ajax({
 		type: 'GET',
 		url: '/internet.py',
-		data: JSON.stringify(data),
+		data: {jsonstring : json_data},
 		success: function(result) {
+			console.log(JSON.stringify(data));
+			console.log("Frá bakenda:", result);
 			renderResults(result);
 		},
 		error: function() {
