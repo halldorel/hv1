@@ -35,9 +35,7 @@ class testLan(unittest.TestCase):
 		
 	def test_bestaGreidsluskiptingLana(self):
 		self.assertEqual(bestaGreidsluskiptingLana(lanalistiAnVerd,10000,20)[0][0].nafn, "besta")
-		self.assertEqual(bestaGreidsluskiptingLana(lanalistiAnVerd,10000,20)[1][0].nafn, "naestbesta")
 		self.assertEqual(bestaGreidsluskiptingLana(lanalistiMedVerd,10000,20)[0][0].nafn, "besta")
-		self.assertEqual(bestaGreidsluskiptingLana(lanalistiMedVerd,10000,20)[1][0].nafn, "naestbesta")
 		
 	def test_maxAllt(self):
 		self.assertEqual(maxAllt(lanalistiAnVerd[1],reikAnVerd[0]).nafn,"besta")
@@ -48,18 +46,25 @@ class testLan(unittest.TestCase):
 	
 	def test_lanAukalega(self):
 		lanAukalega(lanalistiAnVerd[0],10000)
-		self.assertEqual(sum(lanAukalega(lanalistiAnVerd[0],10000)[1])-sum(lanAukalega(lanalistiAnVerd[0],10000)[0]),9945000)
-		self.assertEqual(sum(lanAukalega(lanalistiAnVerd[2],10000)[1])-sum(lanAukalega(lanalistiAnVerd[2],10000)[0]),345000)
+		self.assertEqual(int(sum(lanAukalega(lanalistiAnVerd[0],10000)['heildargreidslur'])-sum(lanAukalega(lanalistiAnVerd[0],10000)['vaxtagreidslur'])),10000000)
+		self.assertEqual(int(sum(lanAukalega(lanalistiAnVerd[2],10000)['heildargreidslur'])-sum(lanAukalega(lanalistiAnVerd[2],10000)['vaxtagreidslur'])),400000)
 	
-		
 	#Athugar hvort munurinn a heildargreidslum og vaxtargreidslum se ekki orugglega jafn hofudstolnum
 	def test_lanVenjulega(self):
 		lanVenjulega(lanalistiAnVerd[0])
-		self.assertEqual(int(sum(lanVenjulega(lanalistiAnVerd[0])[1])-sum(lanVenjulega(lanalistiAnVerd[0])[0])),10000000)
-		self.assertEqual(int(sum(lanVenjulega(lanalistiAnVerd[2])[1])-sum(lanVenjulega(lanalistiAnVerd[2])[0])),400000)
+		self.assertEqual(int(sum(lanVenjulega(lanalistiAnVerd[0])['heildargreidslur'])-sum(lanVenjulega(lanalistiAnVerd[0])['vaxtagreidslur'])),9999996)
+		self.assertEqual(int(sum(lanVenjulega(lanalistiAnVerd[2])['heildargreidslur'])-sum(lanVenjulega(lanalistiAnVerd[2])['vaxtagreidslur'])),399996)
 		
 	def test_haestaMogulegtLan(self):
 		self.assertEqual(int(haestaMogulegtLan(heildargreidslugeta)),56666666)
+		
+	def test_validLan(self):
+		self.assertEqual(validLan("Krummi",2.0,True,19,12324234.0,9.4),True)
+		self.assertEqual(validLan("Krummi",2.0,30,19,12324234.0,9.4),False)
+		self.assertEqual(validLan(1,2.0,True,19,12324234.0,9.4),False)
+		self.assertEqual(validLan("Krummi",2.0,True,"krummi",12324234.0,9.4),False)
+		self.assertEqual(validLan("Krummi",2.0,True,19,12324234,9.4),False)
+		self.assertEqual(validLan("Krummi",2.0,True,19,12324234,9),False)
 		
 class testReikningur(unittest.TestCase):
 		

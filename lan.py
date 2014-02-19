@@ -12,7 +12,25 @@ class lan:
 			self.raunvextir = vextir + verdbolga
 		else:
 			self.verdbolga = 0
-			
+
+#E: True ef oll gildin eru a rettu formi en False ef a.m.k eitt er a rongu formi.
+#   Rett form er [str,float,bool,int,float,float].
+def validLan(nafn,vextir,verdtryggt,timi,hofudstoll,verdbolga):
+	if isinstance(nafn,str) == False:
+		return False
+	if isinstance(vextir,float) == False:
+		return False
+	if isinstance(verdtryggt,bool) == False:
+		return False
+	if isinstance(timi,int) == False:
+		return False
+	if isinstance(hofudstoll,float) == False:
+		return False
+	if isinstance(verdbolga,float) == False:
+		return False
+	
+	return True
+	
 #N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan)
 #E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru i vexti af lani 
 #	og heildargreidslur er listi af heildargreidslum a manudi.
@@ -20,28 +38,28 @@ def lanVenjulega(lan):
 	afborgun = lan.hofudstoll/lan.timi
 	heildargreidslur = []
 	vaxtagreidslur = []
-	hofudstoll = lan.hofudstoll
 	for i in range(0,lan.timi):
-		vaxtagreidslur.append((hofudstoll - (i * hofudstoll / lan.timi)) * lan.raunvextir)
+		vaxtagreidslur.append((lan.hofudstoll - (i * afborgun)) * lan.raunvextir)
 		heildargreidslur.append(vaxtagreidslur[i] + afborgun)
 	return {"vaxtagreidslur" : vaxtagreidslur, "heildargreidslur" : heildargreidslur}
 
-#N: #N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan,greidslugeta)
-#E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru vexti af lani 
+#N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan,greidslugeta)
+#E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru i vexti af lani 
 #	og heildargreidslur er listi af heildargreidslum a manudi. Baedi midad vid aukaframlag a manudi
 # 	sem nemur greidslugetunni.
 def lanAukalega(lan, greidslugeta):
-	afborgun = lan.hofudstoll / lan.timi 
+	afborgun = (lan.hofudstoll / lan.timi)
 	heildargreidslur = []
 	vaxtagreidslur = []
 	hofudstoll = lan.hofudstoll
+	borgad = 0 #Fylgjumst med hvad er buid ad borga af laninu.
 	for i in range(0,lan.timi):
-		vaxtagreidslur.append((hofudstoll - (i * (hofudstoll/lan.timi))) * lan.raunvextir)
-		heildargreidslur.append(vaxtagreidslur[i] + afborgun)
-		hofudstoll = hofudstoll - greidslugeta
-		afborgun = hofudstoll/lan.timi
-		
-		if hofudstoll <= 0:
+		vaxtagreidslur.append((hofudstoll - (i * afborgun)) * lan.raunvextir) 
+		heildargreidslur.append(vaxtagreidslur[i] + afborgun + greidslugeta)
+		hofudstoll = hofudstoll - greidslugeta 
+		borgad = borgad + afborgun + greidslugeta
+		if borgad >= lan.hofudstoll: #Ef buin ad borga meira en sem nemur laninu drogum vid af seinustu greidslunni tad sem var ofgreitt.
+			heildargreidslur[i] = heildargreidslur[i] - (borgad - lan.hofudstoll)
 			break
 			
 	return {"vaxtagreidslur" : vaxtagreidslur, "heildargreidslur" : heildargreidslur}
@@ -64,7 +82,7 @@ def maxLan(lanalisti):
 	return [max_lan,lanastadur];
 
 #N: max = maxAllt(maxreikningr,maxlan)
-#E: max er annadhvort maxreikningur eda maxlan - eftir tvi hvort hefur haerri raunvexti
+#E: max er annadhvort maxreikningur eda maxlan - eftir tvi hvort hefur haerri raunvexti.
 def maxAllt(maxreikningur, maxlan):
 	
 	if maxlan.raunvextir > maxreikningur.raunvextir:
@@ -73,7 +91,7 @@ def maxAllt(maxreikningur, maxlan):
 		return maxreikningur
 
 #N: [[bestalan,timi_greidslu]] = bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi)
-#F: lanalisti er listi af lanum, greidslugeta er manadarleg upphaed og timi er fjoldi manadarlegra upphaeda
+#F: lanalisti er listi af lanum, greidslugeta er manadarleg upphaed til greidslu og timi er fjoldi manadarlegra upphaeda.
 #E: bestalan er hagkvaemasta lan til ad greida og timi_greidslu er hversu oft greitt var af bestalan. 
 #	Ytri listinn er radadur fra hagkvaemasta lani til ad greida af til thess ohagkvaemasta
 def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
@@ -91,9 +109,7 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 		else: #Ekki timi fyrir fleiri lan
 			lan_sorted.append([besta,timi_greidslu])  
 			break
-
-	return lan_sorted
-	
+		return lan_sorted
 
 #N: lan = haestaMogulegtLan(heildargreidslugeta)
 #F: heildargreidslugeta er heildarupphaed sem er laus til ad greida i husnaedi
