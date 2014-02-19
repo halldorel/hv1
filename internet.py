@@ -78,8 +78,9 @@ else:
 	results["bestaGreidsluskiptingLana"] = []
 
 	order = 1
+
 	for lan in bestaGreidsluskiptingLanaResult:
-		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn, "greidslur": lan[1], "rodun" : order})
+		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn, "greidslur": lan[1], "rodun" : order, "vextir" : lan[0].vextir})
 		order = order + 1
 
 print "Blessadur"
