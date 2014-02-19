@@ -88,7 +88,6 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 		else: #Ekki timi fyrir fleiri lan
 			lan_sorted.append([besta,timi_greidslu])  
 			break
-<<<<<<< HEAD
 	return lan_sorted
 	
 
@@ -100,8 +99,3 @@ def haestaMogulegtLan(heildargreidslugeta):
 
 	
 	
-	
-	
-=======
-	return lan_sorted
->>>>>>> a6511bfb557a82b7abc6e3b79d70752167ba7965
