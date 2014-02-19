@@ -1,4 +1,4 @@
-var lines, bars;
+var lines, bars, graphs;
 
 function reikna()
 {
@@ -33,6 +33,7 @@ function reikna()
 		spar 	: sparnadur,
 		reikn 	: reikningar
 	}
+	
 
 	var json_data = JSON.stringify(data);
 
@@ -41,61 +42,92 @@ function reikna()
 		url: '/internet.py',
 		data: {jsonstring : json_data},
 		success: function(result) {
-			console.log(JSON.stringify(data));
-			console.log("Frá bakenda:", result);
-			renderResults(result);
+			renderResults(JSON.parse(result));
 		},
 		error: function() {
 			alert("mistök");
-			renderResults(null);
 		}
 	});
 }
 
 function renderResults(result)
 {
+	$('#results').css('display', 'block');
+    $('#graphs').empty();
+	renderLines(result.lanVenjulega, result.lanAukalega);
+	renderBars(result.bestaGreidsluskiptingLana);
+}
+
+function renderLines(lv, la)
+{
+	for (var l in lv)
+	{
+		var row = $('<div class="row><p class="lead>' + lv[l].nafn + '</p></div>');
+		var g = $('<canvas id="lines' + l + '" width="600" height="250"></canvas>');
+		row.append(g);
+		$('#graphs').append(row);
+		var heild = lv[l].val.heildargreidslur;
+		console.log(heild);
+		var label = []
+		for (var i = 0; i < heild.length; i++)
+		{
+			label[i] = i + ' mán';
+		}
+		var auka = la[l].val.heildargreidslur;
+		console.log(auka);
+		for (var h in heild)
+		{
+			if (!auka[h]) auka[h] = 0.0;
+		}
+		var lineData = {
+			labels : label,
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					data : heild
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					data : auka
+				}
+			]
+		};
+		var context = getLineCtx(l);
+		context.create(lineData, GraphInit.lineOptions);
+	}
+}
+
+function renderBars(bg)
+{
+	var names = [];
+	var vals = [];
+	for (var b in bg)
+	{
+		names[b] = bg[b].nafn;
+		vals[b] = bg[b].vextir;
+	}
 	var barData = {
-		labels : ["Krummi","Smálán","Yfirdráttur","Húsnæði"],
+		labels : names,
 		datasets : [
 			{
 				fillColor : "rgba(220,220,220,0.5)",
 				strokeColor : "rgba(220,220,220,1)",
-				data : [65,59,45,5]
+				data : vals
 			}
 		]
 	};
-	
-	var lineData = {
-		labels : ["1","2","3","4","5","6","7"],
-		datasets : [
-			{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				data : [65,64,63,61,60,57,55]
-			},
-			{
-				fillColor : "rgba(151,187,205,0.5)",
-				strokeColor : "rgba(151,187,205,1)",
-				pointColor : "rgba(151,187,205,1)",
-				pointStrokeColor : "#fff",
-				data : [65,62,59,57,55,52,51]
-			}
-		]
-	};
-	renderLines(lineData);
-	renderBars(barData);
-}
-
-function renderLines(lineData)
-{
-	lines = LineGraph.create(lineData, GraphInit.lineOptions);
-}
-
-function renderBars(barData)
-{
-	bars = BarGraph.create(barData, GraphInit.barOptions);
+	var row = $('<div class="row><p class="lead>Hvaða lán á að borga upp?</p></div>');
+	var g = $('<canvas id="bars' + 0 + '" width="600" height="250"></canvas>');
+	row.append(g);
+	$('#graphs').append(row);
+	var context = getBarCtx(0);
+	context.create(barData, GraphInit.barOptions);
 }
 
 
@@ -107,6 +139,8 @@ $(document).ready(function () {
 	var remove_btn = $("button.remove");
 	var lana_list = $("#lanalisti");
 
+	var graphs = $('#graphs');
+	console.log(graphs);
 	lana_list.delegate('button.remove', 'click', function (e) {
 		$(this).parent().parent().parent().slideToggle(100, function () {this.remove();});
 		lan--;

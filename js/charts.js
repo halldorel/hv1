@@ -1,22 +1,29 @@
 
+function getLineCtx(i)
+{
+	var LineGraph = {
+		ctx 		: null,
+		chart 		: null,
+		create 		: function(data, options) {
+			this.ctx 	= $("#lines" + i).get(0).getContext("2d");
+			this.chart 	= new Chart(this.ctx).Line(data,options);
+		}
+	};
+	return LineGraph;
+}
 
-var LineGraph = {
-	ctx 		: null,
-	chart 		: null,
-	create 		: function(data, options) {
-		this.ctx 	= $("#lines").get(0).getContext("2d");
-		this.chart 	= new Chart(this.ctx).Line(data,options);
-	}
-};
-
-var BarGraph = {
-	ctx 		: null,
-	chart 		: null,
-	create 		: function(data, options) {
-		this.ctx 	= $("#bars").get(0).getContext("2d");
-		this.chart 	= new Chart(this.ctx).Bar(data,options);
-	}
-};
+function getBarCtx(i)
+{
+	var BarGraph = {
+		ctx 		: null,
+		chart 		: null,
+		create 		: function(data, options) {
+			this.ctx 	= $("#bars" + i).get(0).getContext("2d");
+			this.chart 	= new Chart(this.ctx).Bar(data,options);
+		}
+	};
+	return BarGraph;
+}
 
 
 var GraphInit = {
