@@ -20,7 +20,7 @@ verdtryggt = True
 
 arguments = cgi.FieldStorage()
 
-print "Content-Type: text/html;charset=utf-8;\n"
+print "Content-Type: text/json;charset=utf-8;\n"
 
 try:
 	jsonstring = arguments["jsonstring"].value
@@ -83,5 +83,4 @@ else:
 		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn, "greidslur": lan[1], "rodun" : order, "vextir" : lan[0].vextir})
 		order = order + 1
 
-print "Blessadur"
 print json.dumps(results)

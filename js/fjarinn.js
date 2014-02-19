@@ -42,10 +42,11 @@ function reikna()
 		url: '/internet.py',
 		data: {jsonstring : json_data},
 		success: function(result) {
-			renderResults(JSON.parse(result));
+			console.log(result);
+			renderResults(result);
 		},
 		error: function() {
-			alert("mistök");
+			displayAlert('Mikil mistök í gangi hjá bakenda. Skamm.')
 		}
 	});
 }
@@ -158,6 +159,9 @@ $(document).ready(function () {
 	});
 
 	$('#reikna').click(function() {
-		reikna();
+		if(validate())
+			reikna();
+		else
+			displayAlert("Vinsamlegast lagfærðu villur");
 	});
 });

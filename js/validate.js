@@ -20,9 +20,23 @@ function unmark(el)
 	}
 }
 
+function displayAlert(alert)
+{
+	var alert_box = $("#alerts");
+	if(alert === undefined)
+		alert_box.html('');
+	else
+		alert_box.append('<div class="alert alert-danger alert-dismissable">' + alert + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>');
+}
+
 function validate()
 {
+	displayAlert();
+
 	var is_valid = true;
+	var some_checked = $('input[type="checkbox"]:checked').length > 0;
+
+	if(!some_checked) { displayAlert('Velja verður a.m.k. einn sparnaðarreikning'); }
 
 	$("input[type='number']").each(function(){
 		var el = $(this);
@@ -36,13 +50,12 @@ function validate()
 		if(isNaN(to))
 			to = Number.MAX_VALUE;
 
-		console.log(el, from, to, placeholder, value);
-
 		if(value === undefined || value === "" || value == "" || !isNumber(value))
 		{
 			is_valid = false;
 			mark(el);
 		}
+
 		else
 		{
 			if((value < from) || (value > to))
@@ -59,5 +72,3 @@ function validate()
 
 	return is_valid;
 }
-
-validate();
