@@ -82,7 +82,5 @@ else:
 		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn, "greidslur": lan[1], "rodun" : order})
 		order = order + 1
 
-	
-
 print "Blessadur"
 print json.dumps(results)

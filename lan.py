@@ -92,7 +92,7 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 	
 
 #N: lan = haestaMogulegtLan(heildargreidslugeta)
-#F: heildargreidslugeta er heildarupphaed sem er laus til að greida i husnaedi
+#F: heildargreidslugeta er heildarupphaed sem er laus til ad greida i husnaedi
 #E: lan er haesta mogulegt lan sem haegt er taka midad vid greidslugetu
 def haestaMogulegtLan(heildargreidslugeta):
 	return heildargreidslugeta/0.15 - heildargreidslugeta
