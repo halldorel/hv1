@@ -1,34 +1,4 @@
-var barData = {
-	labels : ["Krummi","Smálán","Yfirdráttur","Húsnæði"],
-	datasets : [
-		{
-			fillColor : "rgba(220,220,220,0.5)",
-			strokeColor : "rgba(220,220,220,1)",
-			data : [65,59,45,5]
-		}
-	]
-};
-
-var lineData = {
-	labels : ["1","2","3","4","5","6","7"],
-	datasets : [
-		{
-			fillColor : "rgba(220,220,220,0.5)",
-			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
-			pointStrokeColor : "#fff",
-			data : [65,64,63,61,60,57,55]
-		},
-		{
-			fillColor : "rgba(151,187,205,0.5)",
-			strokeColor : "rgba(151,187,205,1)",
-			pointColor : "rgba(151,187,205,1)",
-			pointStrokeColor : "#fff",
-			data : [65,62,59,57,55,52,51]
-		}
-	]
-};
-
+var lines, bars;
 
 function reikna()
 {
@@ -53,10 +23,10 @@ function reikna()
 	};
 
 	var reikningar = [];
-	if ($('#180')[0].checked) reikningar.append({reikningur: "Kjörbók", vextir: 1.80});
-	if ($('#445')[0].checked) reikningar.append({reikningur: "Sparireikningur", vextir: 4.45});
-	if ($('#425')[0].checked) reikningar.append({reikningur: "Vaxtareikningur", vextir: 4.25});
-	if ($('#190')[0].checked) reikningar.append({reikningur: "Landsbók", vextir: 1.90});
+	if ($('#180')[0].checked) reikningar.push({reikningur: "Kjörbók", vextir: 1.80});
+	if ($('#445')[0].checked) reikningar.push({reikningur: "Sparireikningur", vextir: 4.45});
+	if ($('#425')[0].checked) reikningar.push({reikningur: "Vaxtareikningur", vextir: 4.25});
+	if ($('#190')[0].checked) reikningar.push({reikningur: "Landsbók", vextir: 1.90});
 
 	var data = {
 		lan 	: lanaListi,
@@ -64,18 +34,69 @@ function reikna()
 		reikn 	: reikningar
 	}
 
+	var json_data = JSON.stringify(data);
+
 	$.ajax({
 		type: 'GET',
 		url: '/internet.py',
-		data: JSON.stringify(data),
+		data: {jsonstring : json_data},
 		success: function(result) {
-			alert("snilld");
+			console.log(JSON.stringify(data));
+			console.log("Frá bakenda:", result);
+			renderResults(result);
 		},
 		error: function() {
 			alert("mistök");
 		}
 	});
 }
+
+function renderResults(result)
+{
+	var barData = {
+		labels : ["Krummi","Smálán","Yfirdráttur","Húsnæði"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				data : [65,59,45,5]
+			}
+		]
+	};
+	
+	var lineData = {
+		labels : ["1","2","3","4","5","6","7"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [65,64,63,61,60,57,55]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [65,62,59,57,55,52,51]
+			}
+		]
+	};
+	renderLines(lineData);
+	renderBars(barData);
+}
+
+function renderLines(lineData)
+{
+	lines = LineGraph.create(lineData, GraphInit.lineOptions);
+}
+
+function renderBars(barData)
+{
+	bars = BarGraph.create(barData, GraphInit.barOptions);
+}
+
 
 var lan = 0;
 $(document).ready(function () {
@@ -104,7 +125,4 @@ $(document).ready(function () {
 	$('#reikna').click(function() {
 		reikna();
 	});
-
-	var lines = LineGraph.create(lineData, GraphInit.lineOptions);
-	var bars = BarGraph.create(barData, GraphInit.barOptions);
 });

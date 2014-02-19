@@ -8,11 +8,8 @@ class lan:
 		self.timi = timi
 		self.hofudstoll = hofudstoll
 		self.raunvextir = vextir
-		self.verdbolga = verdbolga
 		if verdtryggt == True:
 			self.raunvextir = vextir + verdbolga
-		else:
-			self.verdbolga = 0
 			
 #N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan)
 #E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru i vexti af lani 
@@ -25,7 +22,7 @@ def lanVenjulega(lan):
 	for i in range(0,lan.timi):
 		vaxtagreidslur.append((hofudstoll - (i * hofudstoll / lan.timi)) * lan.raunvextir)
 		heildargreidslur.append(vaxtagreidslur[i] + afborgun)
-	return [vaxtagreidslur, heildargreidslur]
+	return {"vaxtagreidslur" : vaxtagreidslur, "heildargreidslur" : heildargreidslur}
 
 #N: #N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan,greidslugeta)
 #E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru vexti af lani 
@@ -45,7 +42,7 @@ def lanAukalega(lan, greidslugeta):
 		if hofudstoll <= 0:
 			break
 			
-	return [vaxtagreidslur, heildargreidslur]
+	return {"vaxtagreidslur" : vaxtagreidslur, "heildargreidslur" : heildargreidslur}
 
 #N: [max_lan, lanastadur] = maxLan(lanalisti)
 #F: lanalisti er listi af lanum
@@ -58,11 +55,10 @@ def maxLan(lanalisti):
 	for lan in lanalisti:
 		if lan.raunvextir > max:
 			max_lan = lan
-			max = lan.raunvextir
 			lanastadur = i
 		i = i + 1
 
-	return [max_lan,lanastadur]
+	return [max_lan,lanastadur];
 
 #N: max = maxAllt(maxreikningr,maxlan)
 #E: max er annadhvort maxreikningur eda maxlan - eftir tvi hvort hefur haerri raunvexti
@@ -83,7 +79,7 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 	timi_greidslu = timi #Manudir sem vid eigum eftir af heildartima
 	for i in range(0,len(lanalisti)):
 		besta = maxLan(new_lanalisti)[0] #Hagkvaemast ad greida besta 
-		stadsetning = maxLan(new_lanalisti)[1] 
+		stadsetning = maxLan(new_lanalisti)[1] #
 		greidslur = lanAukalega(besta,greidslugeta)
 		if len(greidslur[0]) < timi_greidslu: #Enn timi eftir fyrir fleiri lan
 			new_lanalisti.pop(stadsetning) #Eydum besta ur listanum og finnum naest besta af teim stokum sem eru eftir
@@ -92,6 +88,7 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 		else: #Ekki timi fyrir fleiri lan
 			lan_sorted.append([besta,timi_greidslu])  
 			break
+<<<<<<< HEAD
 	return lan_sorted
 	
 
@@ -105,3 +102,6 @@ def haestaMogulegtLan(heildargreidslugeta):
 	
 	
 	
+=======
+	return lan_sorted
+>>>>>>> a6511bfb557a82b7abc6e3b79d70752167ba7965

@@ -52,7 +52,7 @@ while True:
 	if not cont or cont != '1':
 		break
 
-#Upplysingar um hvad se hagkvaemast midad vid greidslubyrdi og lan notanda
+# Upplysingar um hvad se hagkvaemast midad vid greidslubyrdi og lan notanda
 print "Hagkvaemast er ad greida inn a lanid: "
 max_lan = maxLan(lanalisti)[0]
 print(max_lan.nafn)
