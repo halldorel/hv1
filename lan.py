@@ -88,4 +88,20 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 		else: #Ekki timi fyrir fleiri lan
 			lan_sorted.append([besta,timi_greidslu])  
 			break
+<<<<<<< HEAD
 	return lan_sorted
+	
+
+#N: lan = haestaMogulegtLan(heildargreidslugeta)
+#F: heildargreidslugeta er heildarupphaed sem er laus til að greida i husnaedi
+#E: lan er haesta mogulegt lan sem haegt er taka midad vid greidslugetu
+def haestaMogulegtLan(heildargreidslugeta):
+	return heildargreidslugeta/0.15 - heildargreidslugeta
+
+	
+	
+	
+	
+=======
+	return lan_sorted
+>>>>>>> a6511bfb557a82b7abc6e3b79d70752167ba7965
