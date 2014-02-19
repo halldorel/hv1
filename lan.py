@@ -10,6 +10,8 @@ class lan:
 		self.raunvextir = vextir
 		if verdtryggt == True:
 			self.raunvextir = vextir + verdbolga
+		else:
+			self.verdbolga = 0
 			
 #N: [vaxtagreidslur, heildargreidslur] = lanVenjulega(lan)
 #E: vaxtagreidslur er listi af manadarlegum upphaedum sem borgadar eru i vexti af lani 
@@ -55,6 +57,7 @@ def maxLan(lanalisti):
 	for lan in lanalisti:
 		if lan.raunvextir > max:
 			max_lan = lan
+			max = lan.raunvextir
 			lanastadur = i
 		i = i + 1
 
@@ -88,7 +91,6 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 		else: #Ekki timi fyrir fleiri lan
 			lan_sorted.append([besta,timi_greidslu])  
 			break
-<<<<<<< HEAD
 	return lan_sorted
 	
 
@@ -98,10 +100,3 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 def haestaMogulegtLan(heildargreidslugeta):
 	return heildargreidslugeta/0.15 - heildargreidslugeta
 
-	
-	
-	
-	
-=======
-	return lan_sorted
->>>>>>> a6511bfb557a82b7abc6e3b79d70752167ba7965
