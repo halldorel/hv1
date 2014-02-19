@@ -81,10 +81,10 @@ def bestaGreidsluskiptingLana(lanalisti,greidslugeta,timi):
 		besta = maxLan(new_lanalisti)[0] #Hagkvaemast ad greida besta 
 		stadsetning = maxLan(new_lanalisti)[1] #
 		greidslur = lanAukalega(besta,greidslugeta)
-		if len(greidslur[0]) < timi_greidslu: #Enn timi eftir fyrir fleiri lan
+		if len(greidslur["vaxtagreidslur"]) < timi_greidslu: #Enn timi eftir fyrir fleiri lan
 			new_lanalisti.pop(stadsetning) #Eydum besta ur listanum og finnum naest besta af teim stokum sem eru eftir
-			timi_greidslu = timi_greidslu - len(greidslur[0])
-			lan_sorted.append([besta,len(greidslur[0])])
+			timi_greidslu = timi_greidslu - len(greidslur["vaxtagreidslur"])
+			lan_sorted.append([besta,len(greidslur["vaxtagreidslur"])])
 		else: #Ekki timi fyrir fleiri lan
 			lan_sorted.append([besta,timi_greidslu])  
 			break
