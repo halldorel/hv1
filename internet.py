@@ -9,16 +9,18 @@ import json
 cgitb.enable()
 
 lanalisti = []
+reikningar = []
 
 results = {}
 jsonstring = ""
 decoded = ""
 
 verdbolga = 0.04
+verdtryggt = True
 
 arguments = cgi.FieldStorage()
 
-print "Content-Type: text/html;charset=utf-8;\n"
+print "Content-Type: text/json;charset=utf-8;\n"
 
 try:
 	jsonstring = arguments["jsonstring"].value
@@ -45,9 +47,11 @@ else:
 
 	results["sparnadurVaxtagrodi"] = []
 
-	for reikningur in decoded["reikn"]:
-		nafn = reikningur["reikningur"]
-		vextir = reikningur["vextir"]
+	for reikningurinn in decoded["reikn"]:
+
+		nafn = reikningurinn["reikningur"]
+		vextir = reikningurinn["vextir"]
+		reikningar.append(reikningur(nafn, float(vextir), float(verdtryggt), verdbolga))
 		sparnadurVaxtagrodiResult = sparnadurVaxtagrodi(float(greidslugeta), float(vextir), verdbolga)
 		results["sparnadurVaxtagrodi"].append({"nafn" : nafn, "vextir" : float(vextir), "sparnadur" : sparnadurVaxtagrodiResult})
 
@@ -61,5 +65,22 @@ else:
 		results["lanVenjulega"].append({"nafn": lanid.nafn, "val": lanVenjulegaResult})
 		results["lanAukalega"].append({"nafn": lanid.nafn, "val" : lanAukalegaResult})
 
-print "Blessadur"
+	maxReikningarResult = maxReikningar(reikningar)
+	maxLanResult = maxLan(lanalisti)
+	maxAlltResult = maxAllt(maxReikningarResult, maxLanResult[0])
+
+	results["maxReikningar"] = { "nafn": maxReikningarResult.nafn, "vextir" : maxReikningarResult.vextir}
+	results["maxLan"] = maxLanResult[0].nafn
+	results["maxAllt"] = maxAlltResult.nafn
+
+	bestaGreidsluskiptingLanaResult = bestaGreidsluskiptingLana(lanalisti, float(greidslugeta), int(hvenaer))
+
+	results["bestaGreidsluskiptingLana"] = []
+
+	order = 1
+
+	for lan in bestaGreidsluskiptingLanaResult:
+		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn, "greidslur": lan[1], "rodun" : order, "vextir" : lan[0].vextir})
+		order = order + 1
+
 print json.dumps(results)
