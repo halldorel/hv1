@@ -15,7 +15,12 @@ results = {}
 jsonstring = ""
 decoded = ""
 
-verdbolga = 0.04
+f = open('json/verdbolga.json', 'r')
+verdbolga = f.read()
+f.close()
+verdbolga = json.loads(verdbolga)
+verdbolga = float(verdbolga["nuverandi"])
+
 verdtryggt = True
 
 arguments = cgi.FieldStorage()
@@ -32,7 +37,7 @@ except:
 	print "JSON syntax error"
 else:
 
-	# Lesum oll gildi ut ur JSON
+# Lesum oll gildi ut ur JSON strengnum
 	for lanid in decoded["lan"]:
 		nafn = lanid["nafn"]
 		vextir = lanid["vextir"]
@@ -42,18 +47,32 @@ else:
 		lanid = lan(nafn, float(vextir), float(verdtr), int(lengd), float(haus), verdbolga)
 		lanalisti.append(lanid)
 
+# greidslugeta	Hversu mikid haegt er ad greida a manudi
+# hvenaer		Hversu lengi skal sparad
+# eign			Hversu mikid er a bankareikning nuna
+
 	greidslugeta = decoded["spar"]["greidslugeta"]
 	hvenaer = decoded["spar"]["hvenaer"]
+	eign = decoded["spar"]["eign"]
+	upphaed = decoded["spar"]["upphaed"]
+
+# sparnadurVaxtagrodi
+# timiAdTakmarki
 
 	results["sparnadurVaxtagrodi"] = []
+	results["timiAdTakmarki"] = []
 
 	for reikningurinn in decoded["reikn"]:
-
 		nafn = reikningurinn["reikningur"]
 		vextir = reikningurinn["vextir"]
 		reikningar.append(reikningur(nafn, float(vextir), float(verdtryggt), verdbolga))
 		sparnadurVaxtagrodiResult = sparnadurVaxtagrodi(float(greidslugeta), float(vextir), verdbolga)
+		timiAdTakmarkiResult = timiAdTakmarki(float(eign), float(greidslugeta), float(vextir), float(verdbolga), float(upphaed))
 		results["sparnadurVaxtagrodi"].append({"nafn" : nafn, "vextir" : float(vextir), "sparnadur" : sparnadurVaxtagrodiResult})
+		results["timiAdTakmarki"].append({"nafn" : nafn, "vextir": float(vextir), "timi" : int(timiAdTakmarkiResult)})
+
+# lanVenjulega
+# lanAukalega
 
 	results["lanVenjulega"] = []
 	results["lanAukalega"] = []
@@ -68,17 +87,16 @@ else:
 	maxReikningarResult = maxReikningar(reikningar)
 	maxLanResult = maxLan(lanalisti)
 	maxAlltResult = maxAllt(maxReikningarResult, maxLanResult[0])
+	bestaGreidsluskiptingLanaResult = bestaGreidsluskiptingLana(lanalisti, float(greidslugeta), int(hvenaer))
 
 	results["maxReikningar"] = { "nafn": maxReikningarResult.nafn, "vextir" : maxReikningarResult.vextir}
 	results["maxLan"] = maxLanResult[0].nafn
 	results["maxAllt"] = maxAlltResult.nafn
-
-	bestaGreidsluskiptingLanaResult = bestaGreidsluskiptingLana(lanalisti, float(greidslugeta), int(hvenaer))
-
 	results["bestaGreidsluskiptingLana"] = []
+	results["verdbolga"] = float(verdbolga) * 100
+	results["haestaMogulegtLan"] = haestaMogulegtLan(eign)
 
 	order = 1
-
 	for lan in bestaGreidsluskiptingLanaResult:
 		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn, "greidslur": lan[1], "rodun" : order, "vextir" : lan[0].vextir})
 		order = order + 1

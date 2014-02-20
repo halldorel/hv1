@@ -25,7 +25,7 @@ conds = {",": ".", "%": ""}
 for l in lysing:
 	sedlabanki = [stripNum(s, conds) for s in re.findall(r'\d{0,2},\d{0,2}\%', str(l))]
 
-out = {"nuverandi": sedlabanki[0], "markmid": sedlabanki[1]}
+out = {"nuverandi": float(sedlabanki[0])/100.0, "markmid": float(sedlabanki[1])/100.0)}
 
-with open('verdbolga.json', 'w') as outfile:
+with open('json/verdbolga.json', 'w') as outfile:
  	json.dump(out, outfile)
