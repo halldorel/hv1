@@ -67,10 +67,14 @@ else:
 		nafn = reikningurinn["reikningur"]
 		vextir = reikningurinn["vextir"]
 		reikningar.append(reikningur(nafn, float(vextir), float(verdtryggt), verdbolga))
-		sparnadurVaxtagrodiResult = sparnadurVaxtagrodi(float(greidslugeta), float(vextir), verdbolga)
-		timiAdTakmarkiResult = timiAdTakmarki(float(eign), float(greidslugeta), float(vextir), float(verdbolga), float(upphaed))
-		results["sparnadurVaxtagrodi"].append({"nafn" : nafn, "vextir" : float(vextir), "sparnadur" : sparnadurVaxtagrodiResult})
-		results["timiAdTakmarki"].append({"nafn" : nafn, "vextir": float(vextir), "timi" : int(timiAdTakmarkiResult)})
+		sparnadurVaxtagrodiResult = sparnadurTimi(int(hvenaer),float(greidslugeta), float(vextir), verdbolga)
+		timiAdTakmarkiResult = timiAdTakmarki(float(eign),float(greidslugeta), float(vextir), float(verdbolga), float(upphaed))
+		results["sparnadurVaxtagrodi"].append({"nafn" : nafn,
+			"vextir" : round(float(vextir), 2),
+			"sparnadur" : round(sparnadurVaxtagrodiResult, 2)})
+		results["timiAdTakmarki"].append({"nafn" : nafn,
+			"vextir": round(float(vextir), 2),
+			"timi" : int(timiAdTakmarkiResult)})
 
 # lanVenjulega
 # lanAukalega
@@ -94,12 +98,23 @@ else:
 	results["maxLan"] = maxLanResult[0].nafn
 	results["maxAllt"] = maxAlltResult.nafn
 	results["bestaGreidsluskiptingLana"] = []
-	results["verdbolga"] = float(verdbolga) * 100
-	results["haestaMogulegtLan"] = haestaMogulegtLan(eign)
+	results["verdbolga"] = round(float(verdbolga) * 100, 2)
+	results["haestaMogulegtLan"] = round(haestaMogulegtLan(float(eign)), 2)
 
 	order = 1
+
+	#if len(bestaGreidsluskiptingLanaResult) > 1:
 	for lan in bestaGreidsluskiptingLanaResult:
-		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn, "greidslur": lan[1], "rodun" : order, "vextir" : lan[0].vextir})
+		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn,
+			"greidslur": lan[1],
+			"rodun" : order,
+			"vextir" : round(lan[0].vextir, 2)})
 		order = order + 1
+	#else:
+	#	lan = bestaGreidsluskiptingLanaResult
+	#	results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn,
+	#		"greidslur": lan[1],
+	#		"rodun" : order,
+	#		"vextir" : lan[0].vextir})
 
 print json.dumps(results)

@@ -52,9 +52,11 @@ def timiAdTakmarki(hofudstoll,greidslugeta,vextir,verdbolga,takmark):
 	upphaed = hofudstoll
 	count = 0
 	while True:
-		upphaed = (upphaed + greidslugeta) * (1 + raunvextir)
 		if upphaed >= takmark:
 			return count
+		upphaed = (upphaed + greidslugeta) * (1 + raunvextir)
 		count = count + 1
+		
+		
 		
 			

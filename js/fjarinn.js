@@ -9,7 +9,7 @@ function reikna()
 		var drasl = $(this).children('div');
 
 		lanaListi[i] = {
-			nafn 	: drasl.children('div.nafn').children('input.nafn').val(),
+			nafn 	: drasl.children('input.nafn').val(),
 			haus	: drasl.children('div.haus').children('input.haus').val(),
 			vextir	: drasl.children('div.vextir').children('input.vextir').val(),
 			lengd	: drasl.children('div.lengd').children('input.lengd').val(),
@@ -60,13 +60,35 @@ function renderResults(result)
     $('#graphs').empty();
 	renderLines(result.lanVenjulega, result.lanAukalega);
 	renderBars(result.bestaGreidsluskiptingLana);
+console.log(result.verdbolga);
+	$('td#verdbolga-result').html("" + result.verdbolga + " %");
+	$('td#lansupphaed-result').html("" + result.haestaMogulegtLan);
+	$('td#raunvextir-result').html("" + result.maxAllt);
+	$('td#borga-result').html("" + result.bestaGreidsluskiptingLana[0].nafn);
+
+	var html = "";
+	var result_el = $("#result-table");
+	if(result_el.hasClass('hidden'))
+		result_el.removeClass('hidden');
+
+	$.each(result.sparnadurVaxtagrodi, function(key, val) {
+		html += "<tr><td>" + val.nafn + "</td><td>" + val.vextir + " %</td><td>" + val.sparnadur + " kr.</td></tr>";
+	});
+	$("#vaxtagrodi").html(html);
+
+	var html = ""
+	$.each(result.timiAdTakmarki, function(key, val) {
+		html += "<tr><td>" + val.nafn + "</td><td>" + val.vextir + " %</td><td>" + val.timi + " mánuðuðir</td></tr>";
+	});
+	$("#sparnadartakmark").html(html);
+
 }
 
 function renderLines(lv, la)
 {
 	for (var l in lv)
 	{
-		var row = $('<div class="row><p class="lead>' + lv[l].nafn + '</p></div>');
+		var row = $('<div class="row"><p class="lead">' + lv[l].nafn + '</p></div>');
 		var g = $('<canvas id="lines' + l + '" width="600" height="250"></canvas>');
 		row.append(g);
 		$('#graphs').append(row);
@@ -126,7 +148,7 @@ function renderBars(bg)
 			}
 		]
 	};
-	var row = $('<div class="row><p class="lead>Hvaða lán á að borga upp?</p></div>');
+	var row = $('<div class="row"><p class="lead">Hvaða lán á að borga upp?</p></div>');
 	var g = $('<canvas id="bars' + 0 + '" width="600" height="250"></canvas>');
 	row.append(g);
 	$('#graphs').append(row);
