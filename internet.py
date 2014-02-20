@@ -18,6 +18,7 @@ decoded = ""
 f = open('json/verdbolga.json', 'r')
 verdbolga = f.read()
 f.close()
+
 verdbolga = json.loads(verdbolga)
 verdbolga = float(verdbolga["nuverandi"])
 
@@ -41,10 +42,10 @@ else:
 	for lanid in decoded["lan"]:
 		nafn = lanid["nafn"]
 		vextir = lanid["vextir"]
-		verdtr = lanid["verdtr"]
+		verdtr = lanid["verdtr"]# == "1" ? True : False
 		lengd = lanid["lengd"]
 		haus = lanid["haus"]
-		lanid = lan(nafn, float(vextir), float(verdtr), int(lengd), float(haus), verdbolga)
+		lanid = lan(nafn, float(vextir), verdtr, int(lengd), float(haus), verdbolga)
 		lanalisti.append(lanid)
 
 # greidslugeta	Hversu mikid haegt er ad greida a manudi
