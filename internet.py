@@ -67,7 +67,7 @@ else:
 		nafn = reikningurinn["reikningur"]
 		vextir = reikningurinn["vextir"]
 		reikningar.append(reikningur(nafn, float(vextir), verdtryggt, float(verdbolga)))
-		sparnadurVaxtagrodiResult = sparnadurVaxtagrodi(int(hvenaer),float(greidslugeta), float(vextir), float(verdbolga))
+		sparnadurVaxtagrodiResult = sparnadurVaxtagrodi(float(greidslugeta), float(vextir), float(verdbolga))
 		timiAdTakmarkiResult = timiAdTakmarki(float(eign),float(greidslugeta), float(vextir), float(verdbolga), float(upphaed))
 		results["sparnadurVaxtagrodi"].append({"nafn" : nafn,
 			"vextir" : round(float(vextir), 2),
