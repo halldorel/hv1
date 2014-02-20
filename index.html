@@ -49,25 +49,25 @@
 				<div class="col-md-3">
 					<div class="input-group">
 					<span class="input-group-addon">kr.</span>
-					<input type="number" class="form-control" placeholder="Greiðslugeta á mánuði" id="greidslugeta" step="1000" />
+					<input type="number" from="0" class="form-control" placeholder="Greiðslugeta á mánuði" id="greidslugeta" step="1000" />
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="input-group">
 					<span class="input-group-addon">mán.</span>
-					<input type="number" class="form-control" placeholder="Tími til úttektar?" id="hvenaer" />
+					<input type="number" from="0" class="form-control" placeholder="Tími til úttektar?" id="hvenaer" />
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="input-group">
 					<span class="input-group-addon">kr.</span>
-					<input type="number" class="form-control" placeholder="Upphæð takmarks" id="upphaed" step="1000" />
+					<input type="number" from="0" class="form-control" placeholder="Upphæð takmarks" id="upphaed" step="1000" />
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="input-group">
 					<span class="input-group-addon">kr.</span>
-					<input type="number" class="form-control" placeholder="Núverandi eign" id="eign" step="1000" />
+					<input type="number" from="0" class="form-control" placeholder="Núverandi eign" id="eign" step="1000" />
 					</div>
 				</div>
 			</div>
@@ -75,15 +75,11 @@
 
 		<br />
 		<div class="row">
-			<div class="col-md-5">
+			<div class="col-sm-3 col-md-3 col-lg-3">
 				<div class="row">
-					<div class="well">
-						<span class="lead">Hakaðu við þá reikninga sem þú átt</span>
+					<div class="well col-md-12 col-sm-12 col-lg-12">
+						<span class="lead">Reikningarnir mínir</span>
 						<div class="checkbox">
-							<label>
-								<input id="selectAll" type="checkbox" value="" />
-								<strong>Velja allt</strong>
-							</label><br />
 							<label>
 								<input class="selectedId" type="checkbox" value="" id="180" />
 								1,80% — Kjörbók
@@ -110,6 +106,50 @@
 					</button>
 				</div>
 			</div>
+
+			<div class="col-sm-8 col-md-8 col-lg-8 hidden" id="result-table" style="margin-left: 20px;">
+				<div class="row">
+				<h2>Lán</h2>
+				<table class="table col-sm-12 col-md-12 col-lg-12">
+					<thead>
+						<th>Verðbólga skv. l.is</th>
+						<th>Hæsta lánsupphæð</th>
+						<th>Hæstu raunvextir</th>
+						<th>Best að borga inn á</th>
+					</thead>
+					<tr>
+						<td id="verdbolga-result"></td>
+						<td id="lansupphaed-result"></td>
+						<td id="raunvextir-result"></td>
+						<td id="borga-result"></td>
+					</tr>
+				</table>
+				<h2>Vaxtagróði sparnaðar</h2>
+				<table class="table col-sm-12 col-md-12 col-lg-12">
+					<thead>
+						<tr>
+							<th>Nafn reiknings</th>
+							<th>Vextir</th>
+							<th>Sparnaður</th>
+						</tr>
+					</thead>
+					<tbody id="vaxtagrodi">
+					</tbody>
+				</table>
+				<h2>Tími að sparnaðartakmarki</h2>
+				<table class="table col-sm-12 col-md-12 col-lg-12">
+					<thead>
+						<tr>
+							<th>Nafn reiknings</th>
+							<th>Vextir</th>
+							<th>Sparnaður</th>
+						</tr>
+					</thead>
+					<tbody id="sparnadartakmark">
+					</tbody>
+				</table>
+			</div>
+		</div>
 			
 
 		</div>
@@ -136,22 +176,22 @@
 <script type="text/template" id="lan-tmp">
 <form>
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-sm-3 col-md-3">
 			<input type="text" class="form-control nafn" placeholder="Nafn láns" />
 		</div>
-		<div class="col-md-3">
+		<div class="col-sm-3 col-md-3">
 			<div class="input-group haus">
 			<span class="input-group-addon">kr.</span>
 			<input type="number" from="0" class="form-control haus" placeholder="Höfuðstóll" step="100000" />
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-sm-2 col-md-2">
 			<div class="input-group vextir">
 			<span class="input-group-addon">%</span>
-			<input type="number" class="form-control vextir" placeholder="Vextir" step="any" />
+			<input type="number" from="0" to="100" class="form-control vextir" placeholder="Vextir" step="any" />
 			</div>
 		</div>
-		<div class="col-md-1">
+		<div class="col-sm-1 col-md-1">
 			<div class="checkbox">
 				<label>
 					<input class="verdtryggt" type="checkbox" value="" />
@@ -159,15 +199,15 @@
 				</label>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-sm-2 col-md-2">
 			<div class="input-group lengd">
 			<span class="input-group-addon">mán.</span>
-			<input type="number" class="form-control lengd" placeholder="Lengd" />
+			<input type="number" from="0" class="form-control lengd" placeholder="Lengd" />
 			</div>
 		</div>
-		<div class="col-sm-1">
-			<button type="button" class="btn btn-default remove" id="meira-lan">
-				<span class="glyphicon glyphicon-remove"></span> Eyða
+		<div class="col-sm-1 col-md-1">
+			<button type="button" class="btn btn-default remove bg-danger" id="meira-lan">
+				<span class="glyphicon glyphicon-remove"></span>
 			</button>
 		</div>
 	</div>
