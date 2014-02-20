@@ -67,8 +67,8 @@ else:
 	for reikningurinn in decoded["reikn"]:
 		nafn = reikningurinn["reikningur"]
 		vextir = reikningurinn["vextir"]
-		reikningar.append(reikningur(nafn, float(vextir), float(verdtryggt), verdbolga))
-		sparnadurVaxtagrodiResult = sparnadurTimi(int(hvenaer),float(greidslugeta), float(vextir), verdbolga)
+		reikningar.append(reikningur(nafn, float(vextir), verdtryggt, float(verdbolga))
+		sparnadurVaxtagrodiResult = sparnadurTimi(int(hvenaer),float(greidslugeta), float(vextir), float(verdbolga))
 		timiAdTakmarkiResult = timiAdTakmarki(float(eign),float(greidslugeta), float(vextir), float(verdbolga), float(upphaed))
 		results["sparnadurVaxtagrodi"].append({"nafn" : nafn,
 			"vextir" : round(float(vextir), 2),
