@@ -83,5 +83,8 @@ class testReikningur(unittest.TestCase):
 	def test_sparnadurTimiHeild(self):
 		self.assertEqual(int(sparnadurTimiHeild(10,10000,0.05,0,10000000)),10517083)
 		
+	def test_timiAdTakmarki(self):
+		self.assertEqual(timiAdTakmarki(1000000,10000,0.04,0.04,12000000),30)
+		
 if __name__ == '__main__':
 	unittest.main()

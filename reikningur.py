@@ -44,4 +44,17 @@ def sparnadurTimi(timi,greidslugeta,vextir,verdbolga):
 def sparnadurTimiHeild(timi,greidslugeta,vextir,verdbolga,hofudstoll):
 	return sparnadurTimi(timi,greidslugeta,vextir,verdbolga) + (timi * greidslugeta) + sparnadurTimi(timi,hofudstoll,vextir,verdbolga) + hofudstoll
 
-	
+#N: timi = timiAdTakmarki(hofudstoll,greidslugeta,vextir,verdbolga,takmark)
+#F: hofudstoll er peningur i upphafi og greidslugeta er upphaed sem baetist vid a manudi. Takmark er lokaupphaed.
+#E: timi er fjoldi manuda sem tekur ad safna upp ad takmarki
+def timiAdTakmarki(hofudstoll,greidslugeta,vextir,verdbolga,takmark):
+	raunvextir = vextir + verdbolga
+	upphaed = hofudstoll
+	count = 0
+	while True:
+		upphaed = (upphaed + greidslugeta) * (1 + raunvextir)
+		if upphaed >= takmark:
+			return count
+		count = count + 1
+		
+			
