@@ -14,6 +14,7 @@ function reikna()
 			lengd	: drasl.children('input.lengd').val(),
 			verdtr 	: ((drasl.children('div.checkbox').children().children('.verdtryggt')[0].checked) ? 1 : 0)
 		}
+		if (lanaListi[i].vextir >= 1) lanaListi[i].vextir *= 0.01;
 	});
 
 	var sparnadur = {
