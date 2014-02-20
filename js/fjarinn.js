@@ -36,8 +36,7 @@ function reikna()
 		spar 	: sparnadur,
 		reikn 	: reikningar
 	}
-	console.log(data);
-/*
+
 	var json_data = JSON.stringify(data);
 
 	$.ajax({
@@ -52,7 +51,7 @@ function reikna()
 			displayAlert('Mikil mistök í gangi hjá bakenda. Skamm.')
 			console.log(result.responseText);
 		}
-	});*/
+	});
 }
 
 function renderResults(result)
