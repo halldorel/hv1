@@ -36,6 +36,7 @@ function reikna()
 		spar 	: sparnadur,
 		reikn 	: reikningar
 	}
+	console.log(data);
 
 	var json_data = JSON.stringify(data);
 
@@ -58,13 +59,17 @@ function renderResults(result)
 {
 	$('#results').css('display', 'block');
     $('#graphs').empty();
-	renderLines(result.lanVenjulega, result.lanAukalega);
-	renderBars(result.bestaGreidsluskiptingLana);
-console.log(result.verdbolga);
+    if (result.lanVenjulega != 0 && result.lanAukalega != 0)
+		renderLines(result.lanVenjulega, result.lanAukalega);
+	if (result.bestaGreidsluskiptingLana != 0)
+		renderBars(result.bestaGreidsluskiptingLana);
 	$('td#verdbolga-result').html("" + result.verdbolga + " %");
-	$('td#lansupphaed-result').html("" + result.haestaMogulegtLan);
-	$('td#raunvextir-result').html("" + result.maxAllt);
-	$('td#borga-result').html("" + result.bestaGreidsluskiptingLana[0].nafn);
+	if (result.haestaMogulegtLan != 0)
+		$('td#lansupphaed-result').html("" + result.haestaMogulegtLan);
+	if (result.maxAllt != 0)
+		$('td#raunvextir-result').html("" + result.maxAllt);
+	if (result.bestaGreidsluskiptingLana != 0)
+		$('td#borga-result').html("" + result.bestaGreidsluskiptingLana[0].nafn);
 
 	var html = "";
 	var result_el = $("#result-table");

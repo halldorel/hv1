@@ -40,12 +40,13 @@ else:
 
 # Lesum oll gildi ut ur JSON strengnum
 	for lanid in decoded["lan"]:
-		nafn = lanid["nafn"]
-		vextir = lanid["vextir"]
-		verdtr = lanid["verdtr"]# == "1" ? True : False
-		lengd = lanid["lengd"]
-		haus = lanid["haus"]
-		lanid = lan(nafn, float(vextir), verdtr, int(lengd), float(haus), verdbolga)
+		if lanid != 0:
+			nafn = lanid["nafn"]
+			vextir = lanid["vextir"]
+			verdtr = lanid["verdtr"]# == "1" ? True : False
+			lengd = lanid["lengd"]
+			haus = lanid["haus"]
+			lanid = lan(nafn, float(vextir), verdtr, int(lengd), float(haus), verdbolga)
 		lanalisti.append(lanid)
 
 # greidslugeta	Hversu mikid haegt er ad greida a manudi
@@ -83,6 +84,10 @@ else:
 	results["lanAukalega"] = []
 
 	for lanid in lanalisti:
+		if lanid == 0:
+			results["lanVenjulega"].append(0)
+			results["lanAukalega"].append(0)
+			continue
 		lanVenjulegaResult = lanVenjulega(lanid)
 		lanAukalegaResult = lanAukalega(lanid, float(greidslugeta))
 
