@@ -48,8 +48,9 @@ function reikna()
 			console.log(result);
 			renderResults(result);
 		},
-		error: function() {
+		error: function(result) {
 			displayAlert('Mikil mistök í gangi hjá bakenda. Skamm.')
+			console.log(result.responseText);
 		}
 	});*/
 }
