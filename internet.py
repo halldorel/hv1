@@ -68,7 +68,9 @@ else:
 		nafn = reikningurinn["reikningur"]
 		vextir = reikningurinn["vextir"]
 		reikningar.append(reikningur(nafn, float(vextir), verdtryggt, float(verdbolga)))
+
 		sparnadurVaxtagrodiResult = sparnadurTimi(int(hvenaer),float(greidslugeta), float(vextir), float(verdbolga))
+
 		timiAdTakmarkiResult = timiAdTakmarki(float(eign),float(greidslugeta), float(vextir), float(verdbolga), float(upphaed))
 		results["sparnadurVaxtagrodi"].append({"nafn" : nafn,
 			"vextir" : round(float(vextir), 2),
@@ -108,18 +110,11 @@ else:
 
 	order = 1
 
-	#if len(bestaGreidsluskiptingLanaResult) > 1:
 	for lan in bestaGreidsluskiptingLanaResult:
 		results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn,
 			"greidslur": lan[1],
 			"rodun" : order,
 			"vextir" : round(lan[0].vextir, 2)})
 		order = order + 1
-	#else:
-	#	lan = bestaGreidsluskiptingLanaResult
-	#	results["bestaGreidsluskiptingLana"].append({"nafn" : lan[0].nafn,
-	#		"greidslur": lan[1],
-	#		"rodun" : order,
-	#		"vextir" : lan[0].vextir})
 
 print json.dumps(results)

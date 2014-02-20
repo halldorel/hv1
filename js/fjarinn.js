@@ -39,7 +39,7 @@ function reikna()
 	console.log(data);
 
 	var json_data = JSON.stringify(data);
-
+/*
 	$.ajax({
 		type: 'GET',
 		url: '/internet.py',
@@ -52,7 +52,7 @@ function reikna()
 			displayAlert('Mikil mistök í gangi hjá bakenda. Skamm.')
 			console.log(result.responseText);
 		}
-	});
+	});*/
 }
 
 function renderResults(result)
