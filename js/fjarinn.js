@@ -79,7 +79,7 @@ console.log(result.verdbolga);
 
 	var html = ""
 	$.each(result.timiAdTakmarki, function(key, val) {
-		html += "<tr><td>" + val.nafn + "</td><td>" + val.vextir + " %</td><td>" + val.timi + " kr.</td></tr>";
+		html += "<tr><td>" + val.nafn + "</td><td>" + val.vextir + " %</td><td>" + val.timi + " mánuðuðir</td></tr>";
 	});
 	$("#sparnadartakmark").html(html);
 
