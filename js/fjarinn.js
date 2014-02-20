@@ -7,13 +7,15 @@ function reikna()
 	formList.each(function(i)
 	{
 		var drasl = $(this).children('div');
+
 		lanaListi[i] = {
-			nafn 	: drasl.children('input.nafn').val(),
-			haus	: drasl.children('input.haus').val(),
-			vextir	: drasl.children('input.vextir').val(),
-			lengd	: drasl.children('input.lengd').val(),
+			nafn 	: drasl.children('div.nafn').children('input.nafn').val(),
+			haus	: drasl.children('div.haus').children('input.haus').val(),
+			vextir	: drasl.children('div.vextir').children('input.vextir').val(),
+			lengd	: drasl.children('div.lengd').children('input.lengd').val(),
 			verdtr 	: ((drasl.children('div.checkbox').children().children('.verdtryggt')[0].checked) ? 1 : 0)
 		}
+		if (lanaListi[i].vextir >= 1) lanaListi[i].vextir *= 0.01;
 	});
 
 	var sparnadur = {
@@ -34,8 +36,8 @@ function reikna()
 		spar 	: sparnadur,
 		reikn 	: reikningar
 	}
-	
-
+	console.log(data);
+/*
 	var json_data = JSON.stringify(data);
 
 	$.ajax({
@@ -50,7 +52,7 @@ function reikna()
 			displayAlert('Mikil mistök í gangi hjá bakenda. Skamm.')
 			console.log(result.responseText);
 		}
-	});
+	});*/
 }
 
 function renderResults(result)

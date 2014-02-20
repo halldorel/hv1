@@ -48,26 +48,26 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="input-group">
+					<span class="input-group-addon">kr.</span>
 					<input type="number" class="form-control" placeholder="Greiðslugeta á mánuði" id="greidslugeta" step="1000" />
-					<span class="input-group-addon">kr.</span>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="input-group">
-					<input type="number" class="form-control" placeholder="Tími til úttektar?" id="hvenaer" />
 					<span class="input-group-addon">mán.</span>
+					<input type="number" class="form-control" placeholder="Tími til úttektar?" id="hvenaer" />
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="input-group">
+					<span class="input-group-addon">kr.</span>
 					<input type="number" class="form-control" placeholder="Upphæð takmarks" id="upphaed" step="1000" />
-					<span class="input-group-addon">kr.</span>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="input-group">
-					<input type="number" class="form-control" placeholder="Núverandi eign" id="eign" step="1000" />
 					<span class="input-group-addon">kr.</span>
+					<input type="number" class="form-control" placeholder="Núverandi eign" id="eign" step="1000" />
 					</div>
 				</div>
 			</div>
@@ -123,7 +123,10 @@
 			<hr />
 			<div class="row">
 				
-				<div class="col-md-7" id="graphs">
+				<div class="col-md-6" id="graphs">
+				
+				</div>
+				<div class="col-md-6" id="other_results">
 				
 				</div>
 			</div>
@@ -137,15 +140,15 @@
 			<input type="text" class="form-control nafn" placeholder="Nafn láns" />
 		</div>
 		<div class="col-md-3">
-			<div class="input-group">
-			<input type="number" from="0" class="form-control haus" placeholder="Höfuðstóll" step="100000" />
+			<div class="input-group haus">
 			<span class="input-group-addon">kr.</span>
+			<input type="number" from="0" class="form-control haus" placeholder="Höfuðstóll" step="100000" />
 			</div>
 		</div>
 		<div class="col-md-2">
-			<div class="input-group">
-			<input type="number" class="form-control vextir" placeholder="Vextir" step="any" />
+			<div class="input-group vextir">
 			<span class="input-group-addon">%</span>
+			<input type="number" class="form-control vextir" placeholder="Vextir" step="any" />
 			</div>
 		</div>
 		<div class="col-md-1">
@@ -157,9 +160,9 @@
 			</div>
 		</div>
 		<div class="col-md-2">
-			<div class="input-group">
-			<input type="number" class="form-control lengd" placeholder="Lengd" />
+			<div class="input-group lengd">
 			<span class="input-group-addon">mán.</span>
+			<input type="number" class="form-control lengd" placeholder="Lengd" />
 			</div>
 		</div>
 		<div class="col-sm-1">
