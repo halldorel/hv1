@@ -19,7 +19,8 @@ function reikna()
 	var sparnadur = {
 		greidslugeta 	: $('#greidslugeta').val(),
 		hvenaer 		: $('#hvenaer').val(),
-		upphaed			: $('#upphaed').val()
+		upphaed			: $('#upphaed').val(),
+		eign 			: $('#eign').val()
 	};
 
 	var reikningar = [];
